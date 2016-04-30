@@ -1,0 +1,206 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<html>
+
+<body>
+	<div class="subnavbar">
+		<div class="subnavbar-inner">
+			<div class="container">
+				<ul class="mainnav">
+					<li id="dashboard"><a href="/VSG/dashboard"><i
+							class="icon-dashboard"></i><span>Dashboard </span> </a></li>
+					<li id="employee" class="dropdown"><a href="javascript:;"
+						class="dropdown-toggle" data-toggle="dropdown"> <i
+							class="icon-large icon-user"></i><span>Employee</span> <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/VSG/employee/employeedetails">Employee
+									Information</a></li>
+							<!-- <li><a href="#">Attendance & Leaves</a></li>-->
+							<li><a href="/VSG/payslips/payslip">Payslip</a></li>
+						</ul></li>
+						
+
+					<c:if
+						test="${employee.role == 'superuser' || employee.role == 'lead' || employee.role == 'recruiter'}">
+						<li id="candidateDetails" class="dropdown"><a
+							href="javascript:;" class="dropdown-toggle"
+							data-toggle="dropdown"> <i class="icon-large icon-group"></i><span>Candidate
+									Details</span> <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/VSG/candidateDetails/show.htm">Add
+										Candidate</a></li>
+								<li><a href="/VSG/candidateDetails/candidateSearch">Search
+										Candidate</a></li>
+							</ul></li>
+					</c:if>
+					<c:if
+						test="${employee.role == 'superuser' || employee.role == 'lead' || employee.role == 'recruiter'}">
+						<li id="resourceManagement" class="dropdown"><a
+							href="javascript:;" class="dropdown-toggle"
+							data-toggle="dropdown"><i class="icon-large icon-dashboard"></i><span>Requirement
+									Management </span> </a>
+							<ul class="dropdown-menu">
+
+								<li id="searchRequirement"><a
+									href="/VSG/requirementManagement/searchRequirementPage">Search
+										Requirement</a></li>
+
+								<c:if
+									test="${employee.role == 'superuser' || employee.role == 'lead'}">
+									<li id="postRequirement"><a
+										href="/VSG/requirementManagement/showPostRequirement">Post
+											Requirement</a></li>
+								</c:if>
+							</ul></li>
+					</c:if>
+
+
+					<c:if
+						test="${employee.role == 'lead' || employee.role == 'superuser' || employee.role == 'recruiter'}">
+						<li id="Reports" class="dropdown"><a href="javascript:;"
+							class="dropdown-toggle" data-toggle="dropdown"><i
+								class="icon-large icon-list-alt"></i><span>Reports </span> </a>
+							<ul class="dropdown-menu">
+								<li id="mySubmission"><a
+									href="/VSG/reports/mySubmissionReport">My Submission Report</a></li>
+								<c:if
+									test="${employee.role == 'superuser' || employee.role == 'lead'}">
+									<li id="recruiterSubmissionReport"><a
+										href="/VSG/reports/showRecruiterSubmissionReport">
+											Recruiter Submission Report</a></li>
+								</c:if>
+							</ul></li>
+					</c:if>
+					<c:if
+						test="${employee.role == 'HR-Finance' || employee.role == 'superuser'}">
+						<li id="Accounts" class="dropdown"><a href="javascript:;"
+							class="dropdown-toggle" data-toggle="dropdown"><i
+								class="icon-large icon-dashboard"></i><span>Accounts </span> </a>
+							<ul class="dropdown-menu">
+
+								<li id="showTransaction"><a
+									href="/VSG/accounts/showTransaction"> Transactions</a></li>
+								
+								<li id="searchTransaction"><a
+									href="/VSG/accounts/searchTransaction">Search Transaction</a></li>
+								
+								<li id="showInvoices">
+								<a href="/VSG/invoices/showInvoices">Invoices</a></li>
+								
+								<li id="searchInvoices">
+								<a href="/VSG/invoices/searchInvoices">Search Invoices</a></li>
+							
+					         
+					         <li id="showIncentive">
+								<a href="/VSG/invoices/showIncentive">Incentives</a></li>
+					         
+					         <li id="searchIncentive">
+								<a href="/VSG/invoices/searchIncentive">Search Incentives</a></li>
+					       
+					         </ul></li>
+					
+					</c:if>
+					<c:if
+						test="${employee.role == 'superuser' || employee.role == 'admin'}">
+						<li id="admin" class="dropdown"><a href="javascript:;"
+							class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="icon-large icon-group"></i><span>Admin</span> <b
+								class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/VSG/admin/showNewEmployeeInfo">Employee
+										Creation</a></li>
+								<li><a href="/VSG/admin/showNewEmploymentInfo">Employment
+										Creation</a></li>
+								<!-- <li><a href="/VSG/admin/showPreviousEmploymentInfo">Previous
+										Employment Creation</a></li> -->
+								<li><a href="/VSG/admin/showUpdateEmployeeInfo">Update
+										Employee Information</a></li>
+
+
+							</ul></li>
+					</c:if>
+
+
+
+					<!-- this is for client Management -->
+
+					<c:if
+						test="${employee.role == 'superuser' || employee.role == 'admin'}">
+						<li id="clientDetails" class="dropdown"><a
+							href="javascript:;" class="dropdown-toggle"
+							data-toggle="dropdown"> <i class="icon-large icon-group"></i><span>ClientManag</span>
+								<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/VSG/clientDetails/showNewClientInfo">Client
+										Creation</a></li>
+								<li id="searchClient"><a
+									href="/VSG/clientDetails/searchClientPage">Client Details</a></li>
+								<li><a href="/VSG/clientDetails/showUpdateClientInfo">Update
+										Client Information</a></li>
+
+							</ul></li>
+					</c:if>
+
+					<c:if
+						test="${employee.role == 'HR-Finance' || employee.role == 'lead'}">
+						<li id="clientDetails" class="dropdown"><a
+							href="javascript:;" class="dropdown-toggle"
+							data-toggle="dropdown"> <i class="icon-large icon-group"></i><span>ClientManag</span>
+								<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li id="searchClient"><a
+									href="/VSG/clientDetails/searchClientPage">Client Details</a></li>
+
+							</ul></li>
+					</c:if>
+
+
+					<c:if
+						test="${employee.role == 'superuser' || employee.role == 'finance'}">
+						<li id="admin" class="dropdown"><a href="javascript:;"
+							class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="icon-large icon-group"></i><span>Finance</span> <b
+								class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="/VSG/finance/empCTC">Employee CTC Form</a></li>
+						</ul></li>
+					</c:if>
+					<c:if test="${employee.role == 'admin'}">
+						<li class="dropdown"><a href="javascript:;"
+							class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="icon-large icon-th-large "></i><span>Self Services</span>
+								<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Investment Declaration</a></li>
+							</ul></li>
+					</c:if>
+
+					<li id="documents"><a href="/VSG/employee/policyDocuments"><i
+							class="icon-large icon-question-sign "></i><span>Documents</span>
+					</a></li>
+					<li class="dropdown"><a href="javascript:;"
+						class="dropdown-toggle" data-toggle="dropdown"> <i
+							class="icon-long-arrow-down"></i><span>Drops</span> <b
+							class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Icons</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">Login</a></li>
+							<li><a href="#">Signup</a></li>
+							<li><a href="#">404</a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /subnavbar-inner -->
+	</div>
+	<!-- /subnavbar -->
+	</div>
+
+
+</body>
+</html>
